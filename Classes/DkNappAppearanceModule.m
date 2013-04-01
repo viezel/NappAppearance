@@ -174,7 +174,7 @@
             
             if ([backButton objectForKey:@"titlePositionOffset"] != nil) {
                 CGPoint p = [TiUtils pointValue:@"titlePositionOffset" properties:backButton];
-                [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setBackButtonTitlePositionAdjustment:UIOffsetMake(p.x,p.y) forBarMetrics:UIBarMetricsDefault];
+                [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(p.x,p.y) forBarMetrics:UIBarMetricsDefault];
             }
         }
         
@@ -199,7 +199,7 @@
             
             if ([barButton objectForKey:@"titlePositionOffset"] != nil) {
                 CGPoint p = [TiUtils pointValue:@"titlePositionOffset" properties:barButton];
-                [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitlePositionAdjustment:UIOffsetMake(p.x,p.y) forBarMetrics:UIBarMetricsDefault];
+                [[UIBarButtonItem appearance] setTitlePositionAdjustment:UIOffsetMake(p.x,p.y) forBarMetrics:UIBarMetricsDefault];
             }
             
             //normal
