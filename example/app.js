@@ -32,17 +32,34 @@ NappAppearance.setGlobalStyling({
 		},
 		font:{
 			fontSize:12,
-			fontFamily:"Noteworthy-Bold" //look at http://iosfonts.com/
+			fontFamily:"Noteworthy-Bold" 
 		},
-		tintColor:"#cacaca"
+		selected: {
+			//button is pressed
+			color:"#333",
+			shadowColor: "#999",
+			shadowOffset: {x:0,y:1},
+			font:{
+				fontSize:12,
+				fontFamily:"Noteworthy-Bold" 
+			}
+		},
+		
+		backgroundImage:"/images/btn.png",
+		backgroundSelectedImage:"/images/btn.png",
+		backgroundDisabledImage:"/images/btn.png",
+		tintColor:"#cacaca",
+		titlePositionOffset:{x:0, y:2}
+	},
+	backButton:{
+		backgroundImage:"/images/backbtn.png",
+		backgroundSelectedImage:"/images/backbtn.png",
+		backgroundDisabledImage:"/images/backbtn.png",
+		titlePositionOffset:{x:0, y:2}
 	},
 	navBar:{
 		//shadowImage:"/images/navBarShadow.png",
 		backgroundImage:"/images/navBar.png",
-		buttonBackgroundImage:"/images/btn.png"
-	},
-	backButton:{
-		backgroundImage:"/images/backbtn.png"
 	},
 	slider:{
 		leftTrackImage:"/images/slider_min.png",
@@ -77,20 +94,49 @@ NappAppearance.setGlobalStyling({
 		//backgroundImage:"/images/toolbar.png",
 	},
 	searchBar:{
-		//searchFieldBackgroundImage:"/images/image.png",
+		
+		//search bar
 		backgroundImage:"/images/navBar.png",
+		
+		//search field
+		//searchFieldBackgroundImage:"/images/image.png",
+		//searchFieldHighlightedBackgroundImage:"/images/image.png",
+		
+		//cancel button
+		cancelTitlePositionOffset:{x:0, y:3},
+		
+		//normal
 		cancelTitle:"hit it",
-		cancelTitleColor:"#cacaca",
-		cancelFont:{
-			fontSize:12,
-			fontFamily:"Noteworthy-Light", //look at http://iosfonts.com/
-			fontWeight:"bold"
+		cancelButton: {
+			color:"#333",
+			shadowColor: "#fff",
+			shadowOffset: {x:0,y:-1},
+			font:{
+				fontSize:14,
+				fontFamily:"Noteworthy-Light", 
+				fontWeight:"bold"
+			}
 		},
-		cancelShadowColor: "#fff",
-		cancelShadowOffset: {
-			x:0,
-			y:-1
+		
+		//disabled
+		cancelTitleDisabled: "disabled",
+		cancelButtonDisabled: {
+			color:"red"
+			//add a few or many properties.. 
+		},
+		
+		//selected
+		cancelTitleSelected: "Hitted",
+		cancelButtonSelected: {
+			color:"blue",
+			shadowColor: "#999",
+			shadowOffset: {x:0,y:1},
+			font:{
+				fontSize:12,
+				fontFamily:"Noteworthy-Bold" 
+			}
 		}
+		
 		//scopebar - works with extended SearchBar 
 		/*scopeBarBackgroundImage:"/images/image.png",
 		scopeBarButtonBackgroundImageUnselected:"/images/image.png",
@@ -102,7 +148,7 @@ NappAppearance.setGlobalStyling({
 		shadowColor: "#fff",
 		font:{
 			fontSize:12,
-			fontFamily:"Noteworthy-Light", //look at http://iosfonts.com/
+			fontFamily:"Noteworthy-Light", 
 			fontWeight:"bold"
 		},
 		shadowOffset: {
@@ -132,6 +178,15 @@ NappAppearance.setGlobalStyling({
 			x:0,
 			y:1
 		}
+	},
+	tableView:{
+		sectionIndexColor:"#333",
+		sectionIndexTrackingBackgroundColor:"#ddd",
+		HeaderFooterTintColor:"#333"
+	},
+	popOver:{
+		backgroundImage:"/image/popover_navbar.png",
+		backgroundImageLandscape:"/image/popover_navbar_landscape.png"
 	}
 });
 

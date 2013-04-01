@@ -87,8 +87,6 @@
 }
 
 #pragma Public APIs
-
-
 -(NSMutableDictionary *)parseParams:(NSDictionary *)dict
 {
     NSMutableDictionary *output = [NSMutableDictionary dictionary];
@@ -114,6 +112,7 @@
     }
     return output;
 }
+
 //http://stackoverflow.com/questions/9424112/what-properties-can-i-set-via-an-uiappearance-proxy
 -(void)setGlobalStyling:(id)args
 {
@@ -136,6 +135,8 @@
         NSDictionary *activityIndicator = [args objectForKey:@"activityIndicator"];
         NSDictionary *segmentedControl = [args objectForKey:@"segmentedControl"];
         
+        NSDictionary *tableView = [args objectForKey:@"tableView"];
+        NSDictionary *popOver = [args objectForKey:@"popOver"];
         
         //nav bar Title text for UINavigationBar
         if(navBarTitle != nil){
@@ -150,19 +151,31 @@
         if(navBar != nil){
             [[UINavigationBar appearance] setShadowImage:[UIImage imageNamed:[TiUtils stringValue:@"shadowImage" properties:navBar]]];
             UIImage *navbuttonimg = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundImage" properties:navBar]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+            
             // Set the background image for *all* UINavigationBars
             [[UINavigationBar appearance] setBackgroundImage:navbuttonimg forBarMetrics:UIBarMetricsDefault];
             [[UINavigationBar appearance] setBackgroundImage:navbuttonimg forBarMetrics:UIBarMetricsLandscapePhone];
-
-            UIImage *backbuttonimg = [[UIImage imageNamed:[TiUtils stringValue:@"buttonBackgroundImage" properties:navBar]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
-            [[UIBarButtonItem appearance] setBackgroundImage:backbuttonimg forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-            [[UIBarButtonItem appearance] setBackgroundImage:backbuttonimg forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
         }
         
         if(backButton !=nil){
             UIImage *backbuttonimg = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundImage" properties:backButton]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 5)];
             [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backbuttonimg forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
             [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backbuttonimg forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
+            
+            //selected
+            UIImage *backgroundSelectedimg = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundSelectedImage" properties:backButton]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 5)];
+            [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backgroundSelectedimg forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+            [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backgroundSelectedimg forState:UIControlStateHighlighted barMetrics:UIBarMetricsLandscapePhone];
+            
+            //disabled
+            UIImage *backgroundDisabledimg = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundDisabledImage" properties:backButton]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 5)];
+            [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backgroundDisabledimg forState:UIControlStateDisabled barMetrics:UIBarMetricsDefault];
+            [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backgroundDisabledimg forState:UIControlStateDisabled barMetrics:UIBarMetricsLandscapePhone];
+            
+            if ([backButton objectForKey:@"titlePositionOffset"] != nil) {
+                CGPoint p = [TiUtils pointValue:@"titlePositionOffset" properties:backButton];
+                [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setBackButtonTitlePositionAdjustment:UIOffsetMake(p.x,p.y) forBarMetrics:UIBarMetricsDefault];
+            }
         }
         
         if(barButton != nil){
@@ -170,9 +183,42 @@
             if([[barAttributes allKeys] count] > 0){
                 [[UIBarButtonItem appearance] setTitleTextAttributes:barAttributes forState:UIControlStateNormal];
             }
+            if ([barButton objectForKey:@"selected"] != nil) {
+                barAttributes = [self parseParams:[barButton objectForKey:@"selected"]];
+                if([[barAttributes allKeys] count] > 0){
+                    [[UIBarButtonItem appearance] setTitleTextAttributes:barAttributes forState:UIControlStateHighlighted];
+                }
+            }
+            if ([barButton objectForKey:@"disabled"] != nil) {
+                barAttributes = [self parseParams:[barButton objectForKey:@"disabled"]];
+                if([[barAttributes allKeys] count] > 0){
+                    [[UIBarButtonItem appearance] setTitleTextAttributes:barAttributes forState:UIControlStateDisabled];
+                }
+            }
             [[UIBarButtonItem appearance] setTintColor:[[TiUtils colorValue:@"tintColor" properties:barButton] _color]];
+            
+            if ([barButton objectForKey:@"titlePositionOffset"] != nil) {
+                CGPoint p = [TiUtils pointValue:@"titlePositionOffset" properties:barButton];
+                [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitlePositionAdjustment:UIOffsetMake(p.x,p.y) forBarMetrics:UIBarMetricsDefault];
+            }
+            
+            //normal
+            UIImage *backgroundimg = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundImage" properties:barButton]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+            [[UIBarButtonItem appearance] setBackgroundImage:backgroundimg forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+            [[UIBarButtonItem appearance] setBackgroundImage:backgroundimg forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
+            
+            //selected
+            UIImage *backgroundSelectedimg = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundSelectedImage" properties:barButton]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+            [[UIBarButtonItem appearance] setBackgroundImage:backgroundSelectedimg forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+            [[UIBarButtonItem appearance] setBackgroundImage:backgroundSelectedimg forState:UIControlStateHighlighted barMetrics:UIBarMetricsLandscapePhone];
+            
+            //disabled
+            UIImage *backgroundDisabledimg = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundDisabledImage" properties:barButton]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+            [[UIBarButtonItem appearance] setBackgroundImage:backgroundDisabledimg forState:UIControlStateDisabled barMetrics:UIBarMetricsDefault];
+            [[UIBarButtonItem appearance] setBackgroundImage:backgroundDisabledimg forState:UIControlStateDisabled barMetrics:UIBarMetricsLandscapePhone];
+            
         }
-        
+
         if(tabBar != nil){
             // Customizing the tab bar
             UIImage *tabBackground = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundImage" properties:tabBar]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
@@ -234,31 +280,40 @@
             
             [[UISearchBar appearance] setSearchFieldBackgroundImage:[UIImage imageNamed:[TiUtils stringValue:@"searchFieldBackgroundImage" properties:searchBar]] forState:UIControlStateNormal];
             
+            [[UISearchBar appearance] setSearchFieldBackgroundImage:[UIImage imageNamed:[TiUtils stringValue:@"searchFieldHighlightedBackgroundImage" properties:searchBar]] forState:UIControlStateHighlighted];
+            
             [[UISearchBar appearance] setBackgroundImage:[UIImage imageNamed:[TiUtils stringValue:@"backgroundImage" properties:searchBar]]];
             
             //cancel button
+            if ([searchBar objectForKey:@"cancelButton"] != nil) {
+                NSMutableDictionary *barAttributes = [self parseParams:[searchBar objectForKey:@"cancelButton"]];
+                if([[barAttributes allKeys] count] > 0){
+                    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:barAttributes forState:UIControlStateNormal];
+                }
+            }
+            if ([searchBar objectForKey:@"cancelButtonSelected"] != nil) {
+                NSMutableDictionary *barAttributes = [self parseParams:[searchBar objectForKey:@"cancelButtonSelected"]];
+                if([[barAttributes allKeys] count] > 0){
+                    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:barAttributes forState:UIControlStateHighlighted];
+                }
+            }
+            if ([searchBar objectForKey:@"cancelButtonDisabled"] != nil) {
+                NSMutableDictionary *barAttributes = [self parseParams:[searchBar objectForKey:@"cancelButtonDisabled"]];
+                if([[barAttributes allKeys] count] > 0){
+                    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:barAttributes forState:UIControlStateDisabled];
+                }
+            }
+            
+            //titles
             [[UIButton appearanceWhenContainedIn:[UISearchBar class], nil] setTitle:[TiUtils stringValue:@"cancelTitle" properties:searchBar] forState:UIControlStateNormal];
-            NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-            if ([searchBar objectForKey:@"cancelTitleColor"] != nil) {
-                [attributes setObject:[[TiUtils colorValue:@"cancelTitleColor" properties:searchBar] _color] forKey:UITextAttributeTextColor];
+            [[UIButton appearanceWhenContainedIn:[UISearchBar class], nil] setTitle:[TiUtils stringValue:@"cancelTitleDisabled" properties:searchBar] forState:UIControlStateDisabled];
+            [[UIButton appearanceWhenContainedIn:[UISearchBar class], nil] setTitle:[TiUtils stringValue:@"cancelTitleSelected" properties:searchBar] forState:UIControlStateHighlighted];
+            
+            if ([searchBar objectForKey:@"cancelTitlePositionOffset"] != nil) {
+                CGPoint p = [TiUtils pointValue:@"cancelTitlePositionOffset" properties:searchBar];
+                [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitlePositionAdjustment:UIOffsetMake(p.x,p.y) forBarMetrics:UIBarMetricsDefault];
             }
-            if ([searchBar objectForKey:@"cancelFont"] != nil) {
-                NSDictionary * fontValue = [searchBar objectForKey:@"font"];
-                UIFont *font =  [[TiUtils fontValue:fontValue] font];
-                [attributes setObject:font forKey:UITextAttributeFont];
-            }
-            if ([searchBar objectForKey:@"cancelShadowColor"] != nil) {
-                [attributes setObject:[[TiUtils colorValue:@"cancelShadowColor" properties:searchBar] _color] forKey:UITextAttributeTextShadowColor];
-            }
-            if ([searchBar objectForKey:@"cancelShadowOffset"] != nil) {
-                CGPoint p = [TiUtils pointValue:@"cancelShadowOffset" properties:searchBar];
-                CGSize size = {p.x,p.y};
-                [attributes setObject:[NSValue valueWithCGSize:size] forKey:UITextAttributeTextShadowOffset];
-            }
-            if([[attributes allKeys] count] > 0){ //apply to cancel button
-                [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:attributes forState:UIControlStateNormal];
-                [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:attributes forState:UIControlStateDisabled];
-            }
+            
             
             //scopebar
             [[UISearchBar appearance] setScopeBarBackgroundImage:[UIImage imageNamed:[TiUtils stringValue:@"scopeBarBackgroundImage" properties:searchBar]]];
@@ -297,6 +352,23 @@
             [[UISegmentedControl appearance] setDividerImage:[UIImage imageNamed:[TiUtils stringValue:@"dividerImageUnselectedSelected" properties:segmentedControl]] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
         }
         
+        if(tableView != nil){
+            if([TiUtils isIOS6OrGreater]){
+                //tableview
+                [[UITableView appearance] setSectionIndexColor:[[TiUtils colorValue:@"sectionIndexColor" properties:tableView] _color]];
+                [[UITableView appearance] setSectionIndexTrackingBackgroundColor:[[TiUtils colorValue:@"sectionIndexTrackingBackgroundColor" properties:tableView] _color]];
+                
+                //header & footer view
+                [[UITableViewHeaderFooterView appearance] setTintColor:[[TiUtils colorValue:@"HeaderFooterTintColor" properties:tableView] _color]];
+            }
+        }
+        
+        if(popOver != nil){
+            if([TiUtils isIPad]){
+                [[UINavigationBar appearanceWhenContainedIn:[UIPopoverController class], nil] setBackgroundImage:[[UIImage imageNamed:[TiUtils stringValue:@"backgroundImage" properties:popOver]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)] forBarMetrics:UIBarMetricsDefault];
+                [[UINavigationBar appearanceWhenContainedIn:[UIPopoverController class], nil] setBackgroundImage:[[UIImage imageNamed:[TiUtils stringValue:@"backgroundImageLandscape" properties:popOver]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)] forBarMetrics:UIBarMetricsLandscapePhone];
+            }
+        }
     }
 }
 
