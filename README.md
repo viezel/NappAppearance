@@ -199,7 +199,7 @@ NappAppearance.setGlobalStyling({
 ## Changelog
 
 
-**v.1.2**
+**v.1.1.1**
 
 * Support ```tintColor``` in UINavigationBar
 
