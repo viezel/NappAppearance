@@ -11,7 +11,7 @@ The module is licensed under the MIT license.
 
 ## Download
 
-**Find the newest version in the dist folder**
+**Find the newest version in the dist folder.**
 
 ## Referencing the module in your Titanium Mobile application ##
 
@@ -21,14 +21,16 @@ Simply add the following lines to your `tiapp.xml` file:
         <module platform="iphone">dk.napp.appearance</module> 
     </modules>
 
-
 ## Reference
 
-For more detailed code examples take a look into the example app
+For more detailed code examples take a look into the [example app](https://github.com/viezel/NappAppearance/tree/master/example).
 
 ### setGlobalStyling
 The module has only one method. Use this is the very beginning of your app to style UI component throughout the entire app.
+
+
 All the below parameters are all `optional`. Just specify what you need. 
+
 ```javascript
 var NappAppearance = require('dk.napp.appearance');
 NappAppearance.setGlobalStyling({
@@ -81,6 +83,7 @@ NappAppearance.setGlobalStyling({
 	navBar:{
 		//shadowImage:"/images/navBarShadow.png",
 		backgroundImage:"/images/navBar.png",
+		tintColor: "#FF0000"
 	},
 	slider:{
 		leftTrackImage:"/images/slider_min.png",
@@ -194,17 +197,23 @@ NappAppearance.setGlobalStyling({
 ```
 
 ## Changelog
- 
 
-**v1.1**  
-BREAKING CHANGES: SearchBar & BarButton reimplemented. look at the example code.  
-Added selected, disabled stages at Button and SearchBar cancel button.  
-Added TableView and PopOver UIAppearances.  
-Added TitlePositionOffset to adjust custom fonts in NavBar & Buttons.  
-Bugfixes.  
 
-**v1.0**  
-Initial implementation. 
+**v.1.2**
+
+* Support ```tintColor``` in UINavigationBar
+
+**v.1.1**  
+
+* **BREAKING CHANGES**: SearchBar & BarButton reimplemented. look at the example code.  
+* Added selected, disabled stages at Button and SearchBar cancel button.  
+* Added TableView and PopOver UIAppearances.  
+* Added TitlePositionOffset to adjust custom fonts in NavBar & Buttons.  
+* Bugfixes.  
+
+**v.1.0**  
+
+* Initial implementation. 
 
 
 ## Author
