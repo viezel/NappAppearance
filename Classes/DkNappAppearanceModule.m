@@ -151,6 +151,7 @@
         if(navBar != nil){
             [[UINavigationBar appearance] setShadowImage:[UIImage imageNamed:[TiUtils stringValue:@"shadowImage" properties:navBar]]];
             UIImage *navbuttonimg = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundImage" properties:navBar]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+            [[UINavigationBar appearance] setTintColor:[[TiUtils colorValue:@"tintColor" properties:navBar] _color]];
             
             // Set the background image for *all* UINavigationBars
             [[UINavigationBar appearance] setBackgroundImage:navbuttonimg forBarMetrics:UIBarMetricsDefault];
