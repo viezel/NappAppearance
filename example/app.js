@@ -60,6 +60,7 @@ NappAppearance.setGlobalStyling({
 	navBar:{
 		//shadowImage:"/images/navBarShadow.png",
 		backgroundImage:"/images/navBar.png",
+		tintColor: "#FF0000"
 	},
 	slider:{
 		leftTrackImage:"/images/slider_min.png",
