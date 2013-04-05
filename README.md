@@ -74,6 +74,11 @@ NappAppearance.setGlobalStyling({
 		tintColor:"#cacaca",
 		titlePositionOffset:{x:0, y:2}
 	},
+	doneButton:{
+		backgroundImage:"/images/btn-done.png",
+		backgroundSelectedImage:"/images/btn-done.png",
+		backgroundDisabledImage:"/images/btn-done.png",
+	},
 	backButton:{
 		backgroundImage:"/images/backbtn.png",
 		backgroundSelectedImage:"/images/backbtn.png",
@@ -198,6 +203,9 @@ NappAppearance.setGlobalStyling({
 
 ## Changelog
 
+**v.1.1.2**
+
+* Support for ```doneButton``` when ```style: Ti.UI.iPhone.SystemButtonStyle.DONE``` is set for ```Ti.UI.BUTTON```
 
 **v.1.1.1**
 

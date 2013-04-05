@@ -51,6 +51,14 @@ NappAppearance.setGlobalStyling({
 		tintColor:"#cacaca",
 		titlePositionOffset:{x:0, y:2}
 	},
+	doneButton:{
+		backgroundImage:"/images/btn-done.png",
+		backgroundSelectedImage:"/images/btn-done.png",
+		backgroundDisabledImage:"/images/btn-done.png",
+
+		// Needs Proper Implementation in DkNaapAppearanceModule.m
+		//titlePositionOffset:{x:0, y:0}
+	},
 	backButton:{
 		backgroundImage:"/images/backbtn.png",
 		backgroundSelectedImage:"/images/backbtn.png",
@@ -209,6 +217,13 @@ rightButton.addEventListener("click", function(e){
 		title:"pushed window",
 		backgroundColor:"#fff"
 	});
+
+	var doneButton = Ti.UI.createButton({
+		title: "Done",
+		style: Ti.UI.iPhone.SystemButtonStyle.DONE
+	});
+
+	win.setRightNavButton(doneButton);
 	navGroup.open(win);
 });
 window.setRightNavButton(rightButton);

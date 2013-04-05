@@ -124,6 +124,7 @@
         NSDictionary *navBar = [args objectForKey:@"navBar"];
         NSDictionary *navBarTitle = [args objectForKey:@"navBarTitle"];
         NSDictionary *barButton = [args objectForKey:@"barButton"];
+        NSDictionary *doneButton = [args objectForKey:@"doneButton"];
         NSDictionary *backButton = [args objectForKey:@"backButton"];
         NSDictionary *tabBar = [args objectForKey:@"tabBar"];
         NSDictionary *slider = [args objectForKey:@"slider"];
@@ -218,6 +219,28 @@
             [[UIBarButtonItem appearance] setBackgroundImage:backgroundDisabledimg forState:UIControlStateDisabled barMetrics:UIBarMetricsDefault];
             [[UIBarButtonItem appearance] setBackgroundImage:backgroundDisabledimg forState:UIControlStateDisabled barMetrics:UIBarMetricsLandscapePhone];
             
+        }
+
+        if(doneButton !=nil){
+            UIImage *donebuttonimg = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundImage" properties:doneButton]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+            [[UIBarButtonItem appearance] setBackgroundImage:donebuttonimg forState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault];
+            [[UIBarButtonItem appearance] setBackgroundImage:donebuttonimg forState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone];
+            
+            //selected
+            UIImage *doneselectedimage = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundSelectedImage" properties:doneButton]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+            [[UIBarButtonItem appearance] setBackgroundImage:doneselectedimage forState:UIControlStateHighlighted style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault];
+            [[UIBarButtonItem appearance] setBackgroundImage:doneselectedimage forState:UIControlStateHighlighted style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone];
+            
+            //disabled
+            UIImage *donedisabledimage = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundDisabledImage" properties:doneButton]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
+            [[UIBarButtonItem appearance] setBackgroundImage:donedisabledimage forState:UIControlStateDisabled style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault];
+            [[UIBarButtonItem appearance] setBackgroundImage:donedisabledimage forState:UIControlStateDisabled style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsLandscapePhone];
+
+            //Needs proper implementation
+            /*if ([doneButton objectForKey:@"titlePositionOffset"] != nil) {
+                CGPoint donep = [TiUtils pointValue:@"titlePositionOffset" properties:doneButton];
+                [[UIBarButtonItem appearance] setTitlePositionAdjustment:UIOffsetMake(donep.x,donep.y) style:UIBarButtonItemStyleDone forBarMetrics:UIBarMetricsDefault];
+            }*/
         }
 
         if(tabBar != nil){
