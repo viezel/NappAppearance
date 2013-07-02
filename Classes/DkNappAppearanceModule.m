@@ -242,13 +242,24 @@
                 [[UIBarButtonItem appearance] setTitlePositionAdjustment:UIOffsetMake(donep.x,donep.y) style:UIBarButtonItemStyleDone forBarMetrics:UIBarMetricsDefault];
             }*/
         }
-
+        
         if(tabBar != nil){
             // Customizing the tab bar
             UIImage *tabBackground = [[UIImage imageNamed:[TiUtils stringValue:@"backgroundImage" properties:tabBar]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
             [[UITabBar appearance] setBackgroundImage:tabBackground];
             [[UITabBar appearance] setSelectionIndicatorImage: [UIImage imageNamed:[TiUtils stringValue:@"backgroundSelectedImage" properties:tabBar]]];
-        } 
+            
+            // Customizing the tab bar item
+            NSMutableDictionary *normalAttributes = [self parseParams:tabBar];
+            if([[normalAttributes allKeys] count] > 0){
+                [[UITabBarItem appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
+            }
+            
+            NSMutableDictionary *selectedAttributes = [self parseParams:[tabBar objectForKey:@"selected"]];
+            if([[selectedAttributes allKeys] count] > 0){
+                [[UITabBarItem appearance] setTitleTextAttributes:selectedAttributes forState:UIControlStateSelected];
+            }
+        }
         
         if(slider != nil){
             // Customizing the UISlider

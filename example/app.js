@@ -96,7 +96,21 @@ NappAppearance.setGlobalStyling({
 	},
 	tabBar:{
 		backgroundImage:"/images/tabBar.png",
-		backgroundSelectedImage:"/images/tab_select_indicator.png"
+		backgroundSelectedImage:"/images/tab_select_indicator.png",
+		color:"#ff9900",
+		shadowColor: "black",
+		shadowOffset: {
+			x:0,
+			y:-1
+		},
+		font:{
+			fontSize:20,
+			fontFamily:"Marker Felt"
+		},
+		selected: {
+			color:"#000000",
+			shadowColor: "#ffffff"
+		}
 	},
 	toolbar:{
 		tintColor:"#CD1625",
@@ -228,6 +242,8 @@ rightButton.addEventListener("click", function(e){
 });
 window.setRightNavButton(rightButton);
 
+var self = Ti.UI.createTabGroup();
+
 var navGroup = Ti.UI.iPhone.createNavigationGroup({window : window});
 var main = Ti.UI.createWindow();
 main.add(navGroup);
@@ -307,4 +323,17 @@ scrollView.add(bb2);
 
 window.add(scrollView);
 
-main.open();
+
+var tab1 = Ti.UI.createTab({
+	title: 'Tab 1',
+	window: main
+});
+
+var tab2 = Ti.UI.createTab({
+	title: 'Tab 2',
+	window: window
+});
+
+self.addTab(tab1);
+self.addTab(tab2);
+self.open();
