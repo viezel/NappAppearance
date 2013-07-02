@@ -116,7 +116,23 @@ NappAppearance.setGlobalStyling({
 	},
 	tabBar:{
 		backgroundImage:"/images/tabBar.png",
-		backgroundSelectedImage:"/images/tab_select_indicator.png"
+		backgroundSelectedImage:"/images/tab_select_indicator.png",
+		// normal state
+		color:"#ff9900",
+		shadowColor: "black",
+		shadowOffset: {
+			x:0,
+			y:-1
+		},
+		font:{
+			fontSize:20,
+			fontFamily:"Marker Felt"
+		},
+		// selected state
+		selected: {
+			color:"#000000",
+			shadowColor: "#ffffff"
+		}
 	},
 	toolbar:{
 		tintColor:"#CD1625",
@@ -202,6 +218,11 @@ NappAppearance.setGlobalStyling({
 ```
 
 ## Changelog
+
+**v.1.2.0**
+
+* Support for ```tabBar``` text customization
+
 
 **v.1.1.2**
 
