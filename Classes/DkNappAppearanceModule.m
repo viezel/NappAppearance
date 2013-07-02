@@ -389,6 +389,9 @@
         
         if(popOver != nil){
             if([TiUtils isIPad]){
+                
+                [[UIBarButtonItem appearanceWhenContainedIn:[UIPopoverController class], nil] setTintColor:[[TiUtils colorValue:@"tintColor" properties:popOver] _color]];
+                
                 [[UINavigationBar appearanceWhenContainedIn:[UIPopoverController class], nil] setBackgroundImage:[[UIImage imageNamed:[TiUtils stringValue:@"backgroundImage" properties:popOver]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)] forBarMetrics:UIBarMetricsDefault];
                 [[UINavigationBar appearanceWhenContainedIn:[UIPopoverController class], nil] setBackgroundImage:[[UIImage imageNamed:[TiUtils stringValue:@"backgroundImageLandscape" properties:popOver]] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 5)] forBarMetrics:UIBarMetricsLandscapePhone];
             }

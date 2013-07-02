@@ -194,8 +194,9 @@ NappAppearance.setGlobalStyling({
 		HeaderFooterTintColor:"#333"
 	},
 	popOver:{
-		backgroundImage:"/image/popover_navbar.png",
-		backgroundImageLandscape:"/image/popover_navbar_landscape.png"
+		tintColor:"#CD1625"
+		//backgroundImage:"/image/popover_navbar.png",
+		//backgroundImageLandscape:"/image/popover_navbar_landscape.png"
 	}
 });
 
