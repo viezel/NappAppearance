@@ -203,6 +203,10 @@ NappAppearance.setGlobalStyling({
 
 ## Changelog
 
+**v.1.2**  
+
+* Support for extra TabBar styling. Thanks to @mpociot 
+
 **v.1.1.2**
 
 * Support for ```doneButton``` when ```style: Ti.UI.iPhone.SystemButtonStyle.DONE``` is set for ```Ti.UI.BUTTON```
