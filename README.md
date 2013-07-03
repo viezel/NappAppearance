@@ -67,7 +67,6 @@ NappAppearance.setGlobalStyling({
 				fontFamily:"Noteworthy-Bold" 
 			}
 		},
-		
 		backgroundImage:"/images/btn.png",
 		backgroundSelectedImage:"/images/btn.png",
 		backgroundDisabledImage:"/images/btn.png",
@@ -116,7 +115,23 @@ NappAppearance.setGlobalStyling({
 	},
 	tabBar:{
 		backgroundImage:"/images/tabBar.png",
-		backgroundSelectedImage:"/images/tab_select_indicator.png"
+		backgroundSelectedImage:"/images/tab_select_indicator.png",
+		// normal state
+		color:"#ff9900",
+		shadowColor: "black",
+		shadowOffset: {
+			x:0,
+			y:-1
+		},
+		font:{
+			fontSize:20,
+			fontFamily:"Marker Felt"
+		},
+		// selected state
+		selected: {
+			color:"#000000",
+			shadowColor: "#ffffff"
+		}
 	},
 	toolbar:{
 		tintColor:"#CD1625",
@@ -203,9 +218,9 @@ NappAppearance.setGlobalStyling({
 
 ## Changelog
 
-**v.1.2**  
+**v.1.2**
 
-* Support for extra TabBar styling. Thanks to @mpociot 
+* Support for ```tabBar``` text customization. Thanks to @mpociot
 
 **v.1.1.2**
 
