@@ -118,6 +118,7 @@
     [self notifyOfStyleChange:@"navbar"];
     
 }
+
 -(void)setNavbarTitle:(id)args
 {
     ENSURE_DICT(args);
@@ -130,6 +131,7 @@
      [TiUtils floatValue:@"verticalPositionOffset"properties:args] forBarMetrics:UIBarMetricsDefault];
     [self notifyOfStyleChange:@"navbarTitle"];
 }
+
 -(void)setDoneButton:(id)args
 {
     ENSURE_DICT(args);
@@ -424,6 +426,7 @@
     [[UIActivityIndicatorView appearance] setColor:[[TiUtils colorValue:@"color" properties:args] _color]];
     [self notifyOfStyleChange:@"activityIndicator"];
 }
+
 -(void)setSegmentedControl:(id)args
 {
     ENSURE_DICT(args);
@@ -444,6 +447,7 @@
     
     [self notifyOfStyleChange:@"segmentControl"];
 }
+
 //http://stackoverflow.com/questions/9424112/what-properties-can-i-set-via-an-uiappearance-proxy
 -(void)setGlobalStyling:(id)args
 {
