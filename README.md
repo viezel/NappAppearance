@@ -218,6 +218,10 @@ NappAppearance.setGlobalStyling({
 
 ## Changelog
 
+**v.1.2.5**
+
+* Support for ARC & a few minor changes. Thanks to @benbahrenburg
+
 **v.1.2**
 
 * Support for ```tabBar``` text customization. Thanks to @mpociot
