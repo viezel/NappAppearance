@@ -353,6 +353,7 @@
     if([TiUtils isIOS6OrGreater]){
         //tableview
         [[UITableView appearance] setSectionIndexColor:[[TiUtils colorValue:@"sectionIndexColor" properties:args] _color]];
+        [[UITableView appearance] setSectionIndexBackgroundColor:[[TiUtils colorValue:@"sectionIndexBackgroundColor" properties:args] _color]];
         [[UITableView appearance] setSectionIndexTrackingBackgroundColor:[[TiUtils colorValue:@"sectionIndexTrackingBackgroundColor" properties:args] _color]];
         
         //header & footer view
