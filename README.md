@@ -206,6 +206,7 @@ NappAppearance.setGlobalStyling({
 	},
 	tableView:{
 		sectionIndexColor:"#333",
+		sectionIndexBackgroundColor:'#33000000',
 		sectionIndexTrackingBackgroundColor:"#ddd",
 		HeaderFooterTintColor:"#333"
 	},
