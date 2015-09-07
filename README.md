@@ -219,6 +219,12 @@ NappAppearance.setGlobalStyling({
 
 ## Changelog
 
+**v.1.2.8**
+
+* Update Ti SDK to 4.1.0.GA
+* Add conditional checks to avoid null values being set
+* Add backbutton tintColor which will set the backbutton arrow color
+
 **v.1.2.5**
 
 * Support for ARC & a few minor changes. Thanks to @benbahrenburg
