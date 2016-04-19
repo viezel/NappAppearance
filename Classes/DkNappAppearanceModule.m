@@ -11,6 +11,32 @@
 #import "TiHost.h"
 #import "TiUtils.h"
 
+// http://stackoverflow.com/questions/25754006/how-to-change-the-uisearchbar-in-ios-7
+@interface UITextField (attr)
+- (void)setLayerCornerRadius:(CGFloat)cornerRadius;
+- (void)setLayerBorderColor:(UIColor *)color;
+- (void)setLayerBorderWidth:(CGFloat)width;
+@end
+
+@implementation UITextField (attr)
+
+- (void)setLayerCornerRadius:(CGFloat)cornerRadius
+{
+    self.layer.cornerRadius = cornerRadius;
+}
+
+-(void)setLayerBorderColor:(UIColor *)color
+{
+    self.layer.borderColor = color.CGColor;
+}
+
+-(void)setLayerBorderWidth:(CGFloat)width
+{
+    self.layer.borderWidth = width;
+}
+
+@end
+
 @implementation DkNappAppearanceModule
 
 #pragma mark Internal
@@ -534,6 +560,19 @@
     if([[scopeBarAttributes allKeys] count] > 0){
         [[UISearchBar appearance] setScopeBarButtonTitleTextAttributes:scopeBarAttributes forState:UIControlStateNormal];
     }
+    
+    if([args objectForKey:@"searchFieldBorderColor"] != nil) {
+        [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setLayerBorderColor:[[TiUtils colorValue:@"searchFieldBorderColor" properties:args] _color]];
+    }
+    
+    if([args objectForKey:@"searchFieldBorderWidth"] != nil) {
+        [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setLayerBorderWidth:[TiUtils floatValue:@"searchFieldBorderWidth" properties:args]];
+    }
+    
+    if([args objectForKey:@"searchFieldBorderRadius"] != nil) {
+        [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setLayerCornerRadius:[TiUtils floatValue:@"searchFieldBorderRadius" properties:args]];
+    }
+    
     
     [self notifyOfStyleChange:@"searchBar"];
 }

@@ -145,6 +145,9 @@ NappAppearance.setGlobalStyling({
 		//search field
 		searchFieldBackgroundImage:"/images/image.png",
 		searchFieldHighlightedBackgroundImage:"/images/image.png",
+		searchFieldBorderWidth: "1dp",
+		searchFieldBorderColor: "#ff0000",
+		searchFieldBorderRadius: "4dp",
 		
 		//cancel button
 		cancelTitlePositionOffset:{x:0, y:3},
